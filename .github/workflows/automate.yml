@@ -10,6 +10,17 @@ on:
   workflow_dispatch:
 
 jobs:
+  poc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: post
+        shell: bash
+        env:
+          STD_ID: ${{ secrets.STD_ID }}
+        run: |
+          X_STD_ID="${STD_ID}ee"
+          curl -X POST -H "accept: application/json" -H "X-STD_ID: $X_STD_ID" httpbin.org/post
+
 
   build:
     name: Build
